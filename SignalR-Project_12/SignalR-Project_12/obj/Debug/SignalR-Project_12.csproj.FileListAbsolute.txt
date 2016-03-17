@@ -1,0 +1,10 @@
+c:\users\andy\documents\visual studio 2015\Projects\SignalR-Project_12\SignalR-Project_12\bin\Debug\SignalR-Project_12.exe.config
+c:\users\andy\documents\visual studio 2015\Projects\SignalR-Project_12\SignalR-Project_12\obj\Debug\SignalR-Project_12.csprojResolveAssemblyReference.cache
+c:\users\andy\documents\visual studio 2015\Projects\SignalR-Project_12\SignalR-Project_12\bin\Debug\SignalR-Project_12.exe
+c:\users\andy\documents\visual studio 2015\Projects\SignalR-Project_12\SignalR-Project_12\bin\Debug\SignalR-Project_12.pdb
+c:\users\andy\documents\visual studio 2015\Projects\SignalR-Project_12\SignalR-Project_12\bin\Debug\Microsoft.AspNet.SignalR.Client.dll
+c:\users\andy\documents\visual studio 2015\Projects\SignalR-Project_12\SignalR-Project_12\bin\Debug\Newtonsoft.Json.dll
+c:\users\andy\documents\visual studio 2015\Projects\SignalR-Project_12\SignalR-Project_12\bin\Debug\Microsoft.AspNet.SignalR.Client.xml
+c:\users\andy\documents\visual studio 2015\Projects\SignalR-Project_12\SignalR-Project_12\bin\Debug\Newtonsoft.Json.xml
+c:\users\andy\documents\visual studio 2015\Projects\SignalR-Project_12\SignalR-Project_12\obj\Debug\SignalR-Project_12.exe
+c:\users\andy\documents\visual studio 2015\Projects\SignalR-Project_12\SignalR-Project_12\obj\Debug\SignalR-Project_12.pdb

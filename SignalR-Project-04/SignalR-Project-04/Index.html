@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <textarea id="windowChat" style="width:400px; height:200px;"></textarea>
+    <div>
+        <label>User:</label>
+        <input id="txtUser" type="text" /> <br />
+        <label>Message: </label>
+        <input id="txtMessage" type="text" />
+        <button id="btSend">Send</button>
+
+
+    </div>
+
+
+</body>
+
+</html>
+<script src="Scripts/jquery-1.6.4.js"></script>
+<script src="Scripts/jquery.signalR-2.2.0.js"></script>
+<script>
+    $(function () {
+        var connection = $.connection("/communication/test");
+
+        connection.start(function () {
+          //  connection.send("Hello Word");
+            $("#windowChat").val("Connected\n");
+            $("#btSend").click(function () {
+                var obj = {
+                    Type: 1, //Broadcast
+                    Text: $("#txtMessage").val(),
+                    From: $("#txtUser").val(),
+                };
+                connection.send(obj);
+                $("#txtMessage").val("");
+            });
+        });
+
+        connection.error(function (error) {
+        //    console.log(error);
+       
+            alert("Error: "+error.message);
+        });
+
+        connection.received(function (data) {
+            $("#windowChat").val($("#windowChat").val() + data + "\n");
+
+        });
+
+        connection.reconnected(function () {
+            console.log("Reconnected");
+
+        });
+
+        connection.stateChanged(function (change) {
+            if (change.newState === $.signalR.connectionState.reconnecting) {
+                console.log("Re-connecting");
+
+            }
+            else if(change.newState === $.signalR.connectionState.connected) {
+                console.log("Connected");
+
+            }
+        });
+
+        connection.connectionSlow(function () {
+            alert("Connection Slow. Please verify!");
+
+        });
+        //connection.stop();
+
+    });
+
+</script>
+

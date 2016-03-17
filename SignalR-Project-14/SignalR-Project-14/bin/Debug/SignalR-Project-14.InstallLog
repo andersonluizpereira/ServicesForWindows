@@ -1,0 +1,21 @@
+﻿Instalando o assembly 'C:\Users\Andy\Documents\Visual Studio 2015\Projects\SignalR-Project-14\SignalR-Project-14\bin\Debug\SignalR-Project-14.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\Andy\Documents\Visual Studio 2015\Projects\SignalR-Project-14\SignalR-Project-14\bin\Debug\SignalR-Project-14.InstallLog
+   assemblypath = C:\Users\Andy\Documents\Visual Studio 2015\Projects\SignalR-Project-14\SignalR-Project-14\bin\Debug\SignalR-Project-14.exe
+Instalando o serviço Service1...
+Serviço Service1 foi instalado com êxito.
+Criando a origem de EventLog Service1 no log Application...
+Confirmando o assembly 'C:\Users\Andy\Documents\Visual Studio 2015\Projects\SignalR-Project-14\SignalR-Project-14\bin\Debug\SignalR-Project-14.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\Andy\Documents\Visual Studio 2015\Projects\SignalR-Project-14\SignalR-Project-14\bin\Debug\SignalR-Project-14.InstallLog
+   assemblypath = C:\Users\Andy\Documents\Visual Studio 2015\Projects\SignalR-Project-14\SignalR-Project-14\bin\Debug\SignalR-Project-14.exe
+Desinstalando o assembly 'C:\Users\Andy\Documents\Visual Studio 2015\Projects\SignalR-Project-14\SignalR-Project-14\bin\Debug\SignalR-Project-14.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\Andy\Documents\Visual Studio 2015\Projects\SignalR-Project-14\SignalR-Project-14\bin\Debug\SignalR-Project-14.InstallLog
+   assemblypath = C:\Users\Andy\Documents\Visual Studio 2015\Projects\SignalR-Project-14\SignalR-Project-14\bin\Debug\SignalR-Project-14.exe
+Removendo a origem do EventLog Service1.
+Serviço Service1 está sendo removido do sistema...
+Serviço Service1 foi removido com êxito do sistema.

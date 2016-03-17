@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    
+</head>
+<body>
+    <input type="hidden" id="displayname" />
+    <label>Message : </label>
+    <input type="text" id="message" /> <br />
+    <label>Client :</label>
+    <input type="text" id="client" /><br />
+    <input type="button" id="sendmessage" value="send" />
+    <input type="button" id="alertAll" value="Alert All" /><br />
+
+    <input type="button" id="joingroup" value="Join Group" />
+
+    <input type="button" id="leavegroup" value="Leave Group" /><br />
+
+    <input type="button" id="infocontext" value="Show info Context" /><br />
+
+
+    <input type="button" id="infoserver" value="Show info Server" /><br />
+
+
+
+     <br /><hr />
+    <textarea id="chatWindow" style="width:500px; height:200px">
+
+    </textarea>
+
+</body>
+</html>
+
+<script src="../Scripts/jquery-2.2.0.js"></script>
+<script src="../Scripts/jquery.signalR-2.2.0.js"></script>
+<script src="../signalr/js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+       
+
+        $("#displayname").val(prompt("Enter your name :", ""));
+
+        var chat = $.connection.chatHub;
+        $.connection.hub.qs = { "myQueryString": $("#displayname").val() };
+
+        $("#message").focus();
+
+
+        $.connection.hub.start().done(function () {
+            $("#chatWindow").val("Connected\n");
+            chat.server.connected("Welcome " + $("#displayname").val() + " - ID: " + $.connection.hub.id);
+
+
+
+            $("#sendmessage").click(function () {
+
+                var timeNow = new Date();
+                var hours = timeNow.getHours();
+                var minutes = timeNow.getMinutes();
+                var seconds = timeNow.getSeconds();
+                var showTime = hours + ":" + minutes + ":" + seconds;
+
+                chat.server.mySend({ name: $("#displayname").val(), message: $("#message").val(), time: showTime, client: $("#client").val() });
+                $("#message").val("");
+            });
+
+            $("#alertAll").click(function () {
+                chat.server.alertAll($("#displayname").val());
+
+            });
+
+            $("#joingroup").click(function () {
+                chat.server.joinGroup($("#displayname").val());
+            });
+
+            $("#leavegroup").click(function () {
+                chat.server.leaveGroup($("#displayname").val());
+            });
+
+            $("#infocontext").click(function(){
+                chat.server.infoContext();
+            });
+         
+            $("#infoserver").click(function () {
+                chat.server.infoServer();
+            });
+
+        });
+
+        chat.client.broadcastMessage = function (name,message,time) {
+            $("#chatWindow").val($("#chatWindow").val()+ time + "-"  +name +": " + message + "\n");
+
+        };
+
+        chat.client.showAlertAll = function (name) {
+            alert("Attention !!! \n "+name+ " alert you");
+        };
+
+        chat.client.clientMessage = function (name, message, time) {
+            $("#chatWindow").val($("#chatWindow").val() + time + "-" + name + ": " + message + "\n");
+
+        };
+
+        chat.client.connectedMessage = function (text) {
+            $("#chatWindow").val($("#chatWindow").val() + text + "\n");
+        };
+
+        chat.client.sendMessage = function (text) {
+            $("#chatWindow").val($("#chatWindow").val() + text + "\n");
+        };
+
+        chat.client.groupMessage = function (text) {
+            $("#chatWindow").val($("#chatWindow").val() + text + "\n");
+
+        };
+        chat.client.showAlertYou = function (data) {
+            alert("Info of context:\n" +data);
+        };
+
+        chat.client.showAlertConnected = function () {
+            alert("New Connection");
+        };
+
+        chat.client.showAlertDisconnected = function () {
+            alert("Disconected");
+        };
+
+        chat.client.showAlertInfoServer = function (text) {
+            alert(text);
+        };
+
+    });
+
+</script>
