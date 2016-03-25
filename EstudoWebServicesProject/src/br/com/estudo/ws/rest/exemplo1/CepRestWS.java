@@ -11,6 +11,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
+import org.hibernate.validator.constraints.Length;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 @Path("ceprest")
@@ -49,6 +57,37 @@ public class CepRestWS {
 		
 		
 		return toReturn;
+	}
+	
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("getCepWebServiceJson/{cep}")
+	public static Webservicecep getEndereco(@Length(min=8,max=8,message="O cep deve conter 8 caracteres") @PathParam("cep") String cep) throws JAXBException, MalformedURLException{
+		
+		  JAXBContext jc = JAXBContext.newInstance(Webservicecep.class);
+		
+	       Unmarshaller u = jc.createUnmarshaller();
+	       URL url = new URL( "http://cep.republicavirtual.com.br/web_cep.php?cep="+cep+"&formato=xml" );
+	       Webservicecep wCep = (Webservicecep) u.unmarshal( url );
+	       
+	       return wCep;
+		
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	@Path("getCepWebServiceXml/{cep}")
+	public static Webservicecep getEnderecoXML(@PathParam("cep") String cep) throws JAXBException, MalformedURLException{
+		
+		  JAXBContext jc = JAXBContext.newInstance(Webservicecep.class);
+		
+	       Unmarshaller u = jc.createUnmarshaller();
+	       URL url = new URL( "http://cep.republicavirtual.com.br/web_cep.php?cep="+cep+"&formato=xml" );
+	       Webservicecep wCep = (Webservicecep) u.unmarshal( url );
+	       
+	       return wCep;
+		
 	}
 	
 }

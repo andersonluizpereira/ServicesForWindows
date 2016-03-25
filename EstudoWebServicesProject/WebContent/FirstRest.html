@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>My First Rest</title>
+<script src="jquery-2.2.2.min.js"></script>
+
+
+</head>
+<body>
+   <input type="text" id="meucep" />
+   <input type="button" value="Buscar" id="procurarMeuCep" />
+   
+
+  <table border="1">
+     <tr>
+        <td>Cep</td>
+        <td><span id="theCep"></span></td>
+     </tr>
+     <tr>
+        <td>Rua</td>
+        <td><span id="theRua"></span></td>
+     </tr>
+
+     <tr>
+        <td>Numero</td>
+        <td><span id="theNumero"></span></td>
+     </tr>
+
+      <tr>
+        <td>Bairro</td>
+        <td><span id="theBairro"></span></td>
+     </tr>
+
+<tr>
+        <td>Cidade</td>
+         <td><span id="theCidade"></span></td>
+     </tr>
+
+     <tr>
+        <td>UF</td>
+         <td><span id="theUf"></span></td>
+     </tr>
+
+
+  </table>
+  
+  <script>
+   
+$(document).ready(function() {
+    
+	$("#procurarMeuCep").click(function(){
+	//	alert("");
+	var txtMeuCep = $("#meucep").val();
+	
+	var resptheCep = $("#theCep");
+	var resptheRua = $("#theRua");
+	var resptheNumero = $("#theNumero");
+	var resptheBairro = $("#theBairro");
+	var resptheUf = $("#theUf");
+	var resptheCidade = $("#theCidade");
+	
+	
+	var request =  $.ajax("http://tuxix:8080/EstudoWebServicesProject/webservice/ceprest/getCepWebServiceJson/"+txtMeuCep);
+	
+	request.done(function(data){
+		console.log(data);
+	 resptheCep.html(txtMeuCep) ;
+	 resptheRua.html(data.logradouro);
+	 resptheNumero.html("1");
+	 resptheBairro.html(data.bairro) ;
+     resptheUf.html(data.uf);
+     resptheCidade.html(data.cidade);
+		
+	});
+	
+	request.fail(function(){
+		alert("Error");
+		
+	});
+	
+	});
+	
+	/*
+	function procurarMeuCep(){
+    	
+    	alert("");
+    	
+    }
+    */
+});
+</script>
+</body>
+</html>
+
